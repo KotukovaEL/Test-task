@@ -6,27 +6,22 @@ namespace Task1_3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите высоту треугольника");
-            int n=int.Parse(Console.ReadLine());
+            Console.Write("Введите высоту треугольника: ");
+            int n = int.Parse(Console.ReadLine());
+            PrintTriangle(n);
+        }
+        static void PrintTriangle(int n)
+        {
             for (int i = 1; i <= n; i++)
             {
                 for (int j = n; j >= i; j--)
                 {
                     Console.Write(" ");
                 }
-                for (int j = 1; j <= i; j++)
-                {
-                    Console.Write("*");
-           
-                }
-                for (int j = 2; j <= i; j++)
-                {
-                    Console.Write("*");
-                }
-                Console.WriteLine();
 
+                Console.WriteLine(new string('*', i * 2 - 1));
             }
-            
+
         }
     }
 }

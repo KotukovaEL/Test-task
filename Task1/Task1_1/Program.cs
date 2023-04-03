@@ -7,19 +7,27 @@ namespace Task1_1
         static void Main(string[] args)
         {
             Console.WriteLine("Введите первую сторону прямоугольника: ");
-            int a = int.Parse(Console.ReadLine());
+            int a = ReadInt(Console.ReadLine());
             Console.WriteLine("Введите вторую сторону прямоугольника: ");
-            int b = int.Parse(Console.ReadLine());
+            int b = ReadInt(Console.ReadLine());
+
             if (a <= 0 || b <= 0)
             {
-                Console.WriteLine("Вы ввели 0 или отрицательное число");
-            }
-            else
-            {
-                int result = a * b;
-                Console.WriteLine("Площадь прямоугольника: " + result);
+                throw new Exception("Вы ввели 0 или отрицательное число");
             }
 
+            int result = a * b;
+            Console.WriteLine("Площадь прямоугольника: " + result);
         }
+
+        static int ReadInt(string str)
+        {
+            if (!int.TryParse(str, out int value)) 
+            {
+                throw new Exception($"Некорректное целое значение '{value}'.");
+            }
+
+            return value;
+        } 
     }
 }

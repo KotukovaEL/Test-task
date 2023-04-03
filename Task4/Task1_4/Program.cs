@@ -7,14 +7,14 @@ namespace Task1_4
         static void Main(string[] args)
         {
             Console.WriteLine("Введите высоту треугольника");
-            int n = int.Parse(Console.ReadLine());
+            int n = ReadInt(Console.ReadLine());
             for (int i = 1; i <= n; i++) 
             {
-                Triangle(i, n);
+                PrintTriangle(i, n);
             }
             
         }
-        static void Triangle(int n, int nMax)
+        static void PrintTriangle(int n, int nMax)
         {
             for (int i = 1; i <= n; i++)
             {
@@ -22,18 +22,18 @@ namespace Task1_4
                 {
                     Console.Write(" ");
                 }
-                for (int j = 1; j <= i; j++)
-                {
-                    Console.Write("*");
 
-                }
-                for (int j = 2; j <= i; j++)
-                {
-                    Console.Write("*");
-                }
-                Console.WriteLine();
-
+                Console.WriteLine(new string('*', i * 2 - 1));
             }
+        }
+        static int ReadInt(string str) 
+        {
+            if (!int.TryParse(str, out int value))
+            {
+                throw new Exception($"Некорректное целое значение '{str}'.");
+            }
+
+            return value;
         }
     }
 }

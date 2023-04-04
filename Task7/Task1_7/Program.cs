@@ -6,51 +6,97 @@ namespace Task1_7
     {
         static void Main(string[] args)
         {
-            
-            
-            Console.WriteLine("Массив до сортировки: "+ );
-            int[] massiv = Random(20, 1, 10);
+            Console.WriteLine("Массив до сортировки: ");
+            int[] array = GenerateArray(20, 1, 100);
+            PrintArray(array);
+
             Console.WriteLine("\nМассив после сортировки: ");
-            Sorting(massiv);
-            for (int i = 0;i < massiv.Length; i++)
-            {
-                Console.Write(massiv[i]+" ");
-            }
-            Console.WriteLine("\nМинимальное значение массива: " + massiv[0]);
-            Console.WriteLine("\nМаксимальное значение массива: " + massiv[massiv.Length-1]);
+            Sort(array, 0, array.Length-1);
+            PrintArray(array);
 
-            static int[] Random(int length, int minValue, int MaxValue)
+            Console.WriteLine("\nМинимальное значение массива: " + FindMin(array));
+            Console.WriteLine("\nМаксимальное значение массива: " + FindMax(array));
+        }
+        static void PrintArray(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
             {
-                int[] array = new int[length];
-                Random random = new Random();
-                for (int i = 0; i < array.Length; i++)
+                Console.Write(array[i] + " ");
+            }
+        }
+        static int[] GenerateArray(int length, int minValue, int MaxValue)
+        {
+            int[] array = new int[length];
+            Random random = new Random();
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = random.Next(minValue, MaxValue);
+            }
+            return array;
+        }
+
+        static int Partition(int[] array, int low, int high)
+        {
+            int pivot = array[high];
+            int lowIndex = (low - 1);
+
+            for (int j = low; j < high; j++)
+            {
+                if (array[j] <= pivot)
                 {
-                    array[i] = random.Next(minValue, MaxValue);
-                    //Console.Write(massiv[i] + " ");
+                    lowIndex++;
+
+                    int temp = array[lowIndex];
+                    array[lowIndex] = array[j];
+                    array[j] = temp;
                 }
-                return array;
             }
 
-            static int[] Sorting(int[] massiv)
+            int temp1 = array[lowIndex + 1];
+            array[lowIndex + 1] = array[high];
+            array[high] = temp1;
+
+            return lowIndex + 1;
+        }
+
+        static void Sort(int[] array, int low, int high)
+        {
+            if (low < high)
             {
-                int leftBorder = 0;
-                
-                for (int i = 0; i < massiv.Length; i++)
-                {
-                    for (int j = i; j<massiv.Length; j++)
-                    {
-                        if (massiv[i] > massiv[j])
-                        {
-                            leftBorder = massiv[i];
-                            massiv[i] = massiv[j];
-                            massiv[j] = leftBorder;
-                        }
-                    }
-                }
-                
-                
-                return massiv;
+                int partitionIndex = Partition(array, low, high);
+                Sort(array, low, partitionIndex - 1);
+                Sort(array, partitionIndex + 1, high);
             }
+        }
+
+        static int FindMin(int [] array)
+        {
+            int min = array[0];
+            int n = array.Length;
+            for (int i = 1; i<n; i++) 
+            {
+                if (min > array[i]) 
+                {
+                    min = array[i];
+                }
+            }
+
+            return min;
+        }
+
+        static int FindMax(int[] array)
+        {
+            int max = array[0];
+            int n = array.Length;
+            for (int i = 1; i < n; i++)
+            {
+                if ( array[i]>max)
+                {
+                    max = array[i];
+                }
+            }
+
+            return max;
         }
     }
 }

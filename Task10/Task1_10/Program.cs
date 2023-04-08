@@ -7,7 +7,7 @@ namespace Task1_10
         static void Main(string[] args)
         {
             Console.WriteLine("Массив: ");
-            int[,] array = GenerateArray(0, 100);
+            int[,] array = GenerateArray(4, 3, 0, 100);
             PrintArray(array);
 
             Console.WriteLine("\nСумма элементов, стоящих на четных позициях: " + FindSum(array));
@@ -16,8 +16,6 @@ namespace Task1_10
         {
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                Console.WriteLine();
-
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
                     Console.Write(array[i, j] + " ");                    
@@ -25,9 +23,10 @@ namespace Task1_10
                 Console.WriteLine();
             }
         }
-        static int[,] GenerateArray(int minValue, int MaxValue)
+       
+        static int[,] GenerateArray(int dimention1, int dimention2, int minValue, int MaxValue)
         {
-            int[,] array = new int[4, 3];
+            int[,] array = new int[dimention1, dimention2];
             Random random = new Random();
             for (int i = 0; i < array.GetLength(0); i++)
             {
@@ -46,7 +45,7 @@ namespace Task1_10
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    if ((i+j)%2== 0)
+                    if ((i + j) % 2 == 0)
                     {
                         sum += array[i,j];
                     }

@@ -67,6 +67,5 @@ namespace Task1_6
 
 
         }
-
     }
 }

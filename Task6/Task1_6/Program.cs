@@ -7,23 +7,23 @@ namespace Task1_6
     {
         public enum DisplayType
         {
-            bold = 1,
-            italic,
-            underline,
+            Bold = 1,
+            Italic,
+            Underline,
         }
         static void Main(string[] args)
         {
             var displayTypes = new List<DisplayType>();
-            var enteredType = DisplayType.bold;
+            var enteredType = DisplayType.Bold;
             Console.WriteLine("Параметры надписи: None");
             while (true)
             {
-                
+
                 Console.WriteLine("Введите: \n\t 1: bold \n\t 2: italic \n\t 3: underline");
                 int n = int.Parse(Console.ReadLine());
                 if (n == 1)
                 {
-                    enteredType = DisplayType.bold;
+                    enteredType = DisplayType.Bold;
                     if (!displayTypes.Remove(enteredType))
                     {
                         displayTypes.Add(enteredType);
@@ -33,12 +33,11 @@ namespace Task1_6
                     {
                         Console.WriteLine(displayTypes[i]);
                     }
-                    
-                }
 
+                }
                 else if (n == 2)
                 {
-                    enteredType = DisplayType.italic;
+                    enteredType = DisplayType.Italic;
                     if (!displayTypes.Remove(enteredType))
                     {
                         displayTypes.Add(enteredType);
@@ -49,13 +48,12 @@ namespace Task1_6
                         Console.WriteLine(displayTypes[i]);
                     }
                 }
-
                 else if (n == 3)
                 {
-                    enteredType = DisplayType.underline;
-                    if (!displayTypes.Remove(DisplayType.underline))
+                    enteredType = DisplayType.Underline;
+                    if (!displayTypes.Remove(DisplayType.Underline))
                     {
-                        displayTypes.Add(DisplayType.underline);
+                        displayTypes.Add(DisplayType.Underline);
                     }
                     Console.WriteLine("Параметры надписи: ");
                     for (int i = 0; i < displayTypes.Count; i++)
@@ -64,8 +62,30 @@ namespace Task1_6
                     }
                 }
             }
-
-
+            static void OutPutType(DisplayType enteredType)
+            {
+                while (true)
+                {
+                    var enteredStr = Console.ReadLine();
+                    if (!Enum.TryParse<DisplayType>(enteredStr, out enteredType))
+                    {
+                        PrintList();
+                        break;
+                    }
+                    if (!Enum.IsDefined(enteredType))
+                    {
+                        break;
+                    }
+                }
+            }
+            static void PrintList(List<DisplayType> list)
+            {
+                foreach (DisplayType item in list)
+                {
+                    Console.WriteLine("Параметры надписи: " + item);
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

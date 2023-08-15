@@ -8,7 +8,7 @@ namespace Task1_10.Tests
         [Fact]
         public void Should_find_sum_in_even_positions()
         {
-            var expectedArray = 6;
+            var expectedSumPos = 6;
             var array = new int[,]
             {
                 { 0, 1, 2 },
@@ -16,8 +16,7 @@ namespace Task1_10.Tests
             };
 
             var sumEvenPos = Logic.FindSum(array);
-            //Assert.Equal(expectedArray, actualArray);
-            sumEvenPos.Equals(expectedArray);
+            Assert.Equal(sumEvenPos, expectedSumPos);
 
         }
     }

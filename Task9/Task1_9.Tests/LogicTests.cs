@@ -11,8 +11,8 @@ namespace Task1_9.Tests
         {
             var expectedArray = 15;
             var array = new[] { 1, 2, 3, 4, 5 };
-            Logic.FindSum(array);
-            array.Equals(expectedArray);
+            var sumNum = Logic.FindSum(array);
+            Assert.Equal(sumNum, expectedArray);
         }
     }
 }

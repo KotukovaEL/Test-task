@@ -15,9 +15,9 @@ namespace Task1_10.Tests
                 { 3, 4, 5 }
             };
 
-            Logic.FindSum(array);
+            var sumEvenPos = Logic.FindSum(array);
             //Assert.Equal(expectedArray, actualArray);
-            array.Equals(expectedArray);
+            sumEvenPos.Equals(expectedArray);
 
         }
     }

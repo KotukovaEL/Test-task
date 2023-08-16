@@ -13,13 +13,13 @@ namespace Task1_1.Tests
         }
 
         [Fact]
-        public void Should_throw_Exception_for_incorrect_read_int_1()
+        public void Should_throw_Exception_for_incorrect_read_int_when_string_consists_spaces()
         {
             var stringValue = "   ";
             Assert.Throws<Exception>(() => Logic.ReadInt(stringValue));
         }
         [Fact]
-        public void Should_calculate_square_corretly()
+        public void Should_throw_Exception_for_calculate_square_incorrect()
         {
             int intValue1 = 0;
             int intValue2 = 1;
@@ -27,7 +27,7 @@ namespace Task1_1.Tests
         }
 
         [Fact]
-        public void Should_calculate_square_corretly_1()
+        public void Should_throw_Exception_for_calculate_square_incorrect_when_negative_number()
         {
             int intValue1 = 11;
             int intValue2 = -1;

@@ -8,10 +8,7 @@ namespace Task1_4
         {
             Console.WriteLine("Введите высоту треугольника");
             int n = Logic.ReadInt(Console.ReadLine());
-            for (int i = 1; i <= n; i++) 
-            {
-                Logic.PrintTriangle(i, n);
-            }
+            Logic.PrintTriangle(n);
         }
     }
 }

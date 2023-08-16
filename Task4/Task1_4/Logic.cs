@@ -8,17 +8,21 @@ namespace Task1_4
 {
     public class Logic
     {
-        public static void PrintTriangle(int n, int nMax)
+        public static void PrintTriangle(int n)
         {
             for (int i = 1; i <= n; i++)
             {
-                for (int j = nMax; j >= i; j--)
+                for (int j = 1; j <= i; j++)
                 {
-                    Console.Write(" ");
-                }
+                    for (int k = n; k >= j; k--)
+                    {
+                        Console.Write(" ");
+                    }
 
-                Console.WriteLine(new string('*', i * 2 - 1));
+                    Console.WriteLine(new string('*', j * 2 - 1));
+                }
             }
+                
         }
         public static int ReadInt(string str)
         {

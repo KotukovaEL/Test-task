@@ -25,7 +25,7 @@ namespace Task1_9
             }
             return array;
         }
-        public static int FindSum(int[] array)
+        public static int FindSumPositivNumbers(int[] array)
         {
             int sum = 0;
             for (int i = 0; i < array.Length; i++)

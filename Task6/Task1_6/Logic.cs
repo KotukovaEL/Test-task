@@ -1,18 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Task1_6.Program;
 
 namespace Task1_6
 {
     public class Logic
     {
-        public static bool TryReadType(string enteredStr, out DisplayType type)
+        private readonly IUserInteractor _userInteractor;
+
+        public Logic(IUserInteractor userInteractor)
+        {
+            _userInteractor = userInteractor;
+        }
+
+        public void Run()
+        {
+            var displayTypes = new List<DisplayType>();
+            _userInteractor.PrintDisplayTypes(displayTypes);
+
+            while (true)
+            {
+                _userInteractor.PrintOptions();
+                var enteredStr = _userInteractor.ReadDisplayType();
+                if (!TryReadType(enteredStr, out DisplayType type) || type == DisplayType.None)
+                {
+                    return;
+                }
+
+                if (!displayTypes.Remove(type))
+                {
+                    displayTypes.Add(type);
+                }
+
+                _userInteractor.PrintDisplayTypes(displayTypes);
+            }
+        }
+
+        public bool TryReadType(string enteredStr, out DisplayType type)
         {
             type = DisplayType.None;
-            
+
 
             if (!Enum.TryParse(enteredStr, out type))
             {
@@ -25,16 +51,6 @@ namespace Task1_6
             }
 
             return true;
-        }
-
-        public static void PrintList(List<DisplayType> displayTypes)
-        {
-            Console.Write("Параметры надписи: ");
-            for (int i = 0; i < displayTypes.Count; i++)
-            {
-                Console.Write(displayTypes[i] + " ");
-            }
-            Console.WriteLine();
         }
     }
 }

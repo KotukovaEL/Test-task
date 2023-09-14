@@ -13,7 +13,8 @@ namespace Task1_6.Tests
         [InlineData("Underline", DisplayType.Underline)]
         public void Should_read_correct_DisplayType(string value, DisplayType expectedType)
         {
-            var boolResult = Logic.TryReadType(value, out DisplayType actualType);
+            var logic = new Logic();
+            var boolResult = logic.TryReadType(value, out DisplayType actualType);
             Assert.True(boolResult);
             Assert.Equal(expectedType, actualType);
         }
@@ -24,7 +25,8 @@ namespace Task1_6.Tests
         [InlineData("sfd")]
         public void Should_not_read_incorrect_DisplayType(string value)
         {
-            var boolResult = Logic.TryReadType(value, out DisplayType actualType);
+            var logic = new Logic();
+            var boolResult = logic.TryReadType(value, out DisplayType actualType);
             Assert.False(boolResult);
         }
     }
